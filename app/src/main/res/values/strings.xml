@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Social Photo</string>
+    <string name="missing_input_title">FIELD WAS NOT COMPLETED</string>
+    <string name="missing_input_message">Please complete the fields to login.</string>
+</resources>

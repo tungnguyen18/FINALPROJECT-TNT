@@ -1,0 +1,133 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_bg"
+    tools:context="net.runsystem.socialphoto.fragment.FragmentImageUpload">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="0dp">
+
+        <ImageView
+            android:id="@+id/img_photo_upload"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/placeholer_image_800" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fbUpload"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="140dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_camera"
+            app:backgroundTint="@color/color_button"
+            app:layout_anchor="@id/img_photo_upload"
+            app:layout_anchorGravity="bottom|right" />
+    </android.support.design.widget.CoordinatorLayout>
+        <LinearLayout
+            android:layout_below="@+id/img_photo_upload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:background="@color/black_opacity"
+                android:text="Caption"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fontzise_16" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="42dp"
+                android:layout_marginRight="42dp"
+                android:textColor="@color/white"
+                android:id="@+id/etCaption"
+                tools:text="This is a good place\n Sencond line" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginRight="15dp">>
+                <Button
+                    android:id="@+id/button_0"
+                    style="@style/ImageUpload_btn_style"
+                    android:inputType="textCapCharacters"
+                    android:textSize="@dimen/fontzise_16"
+                    android:text="Send location" />
+                <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/swSendLocation"
+                    style="@style/MySwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:backgroundTint="@color/color_btn_fap"
+                    android:checked="true"
+                    android:elevation="6dp" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tvhashtag"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@color/black_opacity"
+                android:padding="4dp"
+                android:text="Hashtag"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fontzise_16" />
+
+            <com.fenlisproject.hashtagedittext.HashTagEditText
+                android:id="@+id/hashtagView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvhashtag"
+                android:textColor="@color/white"
+                app:bubbleTextColor="@color/white"
+                android:layout_marginTop="5dp"
+
+                app:bubbleTextSize="16sp"
+                app:horizontalPadding="8dp"
+                app:horizontalSpacing="2dp"
+                app:maxSize="10"
+                app:verticalPadding="4dp"
+                app:verticalSpacing="2dp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginTop="5dp">
+
+                <Button
+                    android:textColor="@color/white"
+                    android:background="@color/color_button"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="Cancel"
+                    android:id="@+id/btnCancel"
+                    android:layout_alignParentLeft="true"/>
+
+                <Button
+                    android:textColor="@color/white"
+                    android:background="@color/color_button"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="Post"
+                    android:id="@+id/btnPost"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+</LinearLayout>
