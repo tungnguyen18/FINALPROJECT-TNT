@@ -15,5 +15,5 @@ public interface OnNewItemClick {
 
     void onPictureClick(NewsBean imageProfile);
 
-    void onPinMapClick(String strlat, String strlong);
+    void onPinMapClick(NewsBean newsBean);
 }

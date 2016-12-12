@@ -37,7 +37,7 @@ public class ImageDetailHeaderViewHolder extends OnClickViewHolder {
 
     @BindView(R.id.imgAvatar_detail)
     ImageView ivAvatar;
-    @OnClick(R.id.imgAvatar)
+    @OnClick(R.id.imgAvatar_detail)
     public void gotoProfile(){
         if (onDetailClicked != null) {
             onDetailClicked.onAvatarClicked(selectedHomeBean);

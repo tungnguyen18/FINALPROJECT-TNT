@@ -7,11 +7,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import net.runsystem.socialphoto.API.Request.FavouritesRequest;
 import net.runsystem.socialphoto.API.Request.FollowHomeRequest;
 import net.runsystem.socialphoto.API.Request.NewsRequest;
 import net.runsystem.socialphoto.API.Response.NewsResponse;
 import net.runsystem.socialphoto.Adapter.NewListAdapter;
 import net.runsystem.socialphoto.Bean.NewsBean;
+import net.runsystem.socialphoto.Constant.ApiConstance;
 import net.runsystem.socialphoto.R;
 import net.runsystem.socialphoto.callback.OnNewItemClick;
 
@@ -41,7 +43,7 @@ public class NewFragment extends HeaderFragment implements SwipeRefreshLayout.On
     NewListAdapter newListAdapter;
 
     List<NewsBean> newBeanList;
-    NewsBean userProfileBean;
+    NewsBean newsBean;
 
     int type;
     String last_query_timestamp;
@@ -63,14 +65,7 @@ public class NewFragment extends HeaderFragment implements SwipeRefreshLayout.On
 
     @Override
     protected void getArgument(Bundle bundle) {
-//        type = bundle.getInt("TYPE");
-//        if (type == ApiType.NEW) {
-//            getNews(true, type);
-//        } else if (type == ApiType.FOLLOW) {
-//            getNews(true, type);
-//        }
         home_type = bundle.getInt(HOME_TYPE);
-
     }
 
     @Override
@@ -149,6 +144,7 @@ public class NewFragment extends HeaderFragment implements SwipeRefreshLayout.On
     @Override
     public void onRefresh() {
 
+
     }
 
     @Override
@@ -159,8 +155,24 @@ public class NewFragment extends HeaderFragment implements SwipeRefreshLayout.On
 
 
     @Override
-    public void onFavouriteClick(String imageId, int favourite) {
+    public void onFavouriteClick(final String imageId, final int favourite) {
+        FavouritesRequest favouritesRequest = new FavouritesRequest(imageId, favourite);
+        favouritesRequest.setRequestCallBack(new ApiObjectCallBack<BaseResponse>() {
+            @Override
+            public void onSuccess(BaseResponse data) {
+                hideCoverNetworkLoading();
+                if (data.status == 1) {
+                    changeFavouriteLocal(imageId,favourite);
+                    newListAdapter.notifyDataSetChanged();
+                }
+            }
 
+            @Override
+            public void onFail(int failCode, String message) {
+
+            }
+        });
+        favouritesRequest.execute();
     }
 
     @Override
@@ -197,19 +209,33 @@ public class NewFragment extends HeaderFragment implements SwipeRefreshLayout.On
     }
 
     @Override
-    public void onPinMapClick(String strlat, String strlong) {
+    public void onPinMapClick(NewsBean newsBean) {
 
     }
     private void setChangeFollow(String userId, int follow) {
         int size = newBeanList.size();
         for (int i = 0; i < size; i++) {
-            NewsBean newsBean = newBeanList.get(i);
+             newsBean = newBeanList.get(i);
             if ((newsBean != null) && (newsBean.user.id.equals(userId))) {
                 if (follow == 0) {
                     newBeanList.get(i).user.isFollowing = false;
                 } else if (follow == 1) {
                     newBeanList.get(i).user.isFollowing = true;
                 }
+            }
+        }
+    }
+    private void changeFavouriteLocal(String imageId, int status) {
+        int size = newBeanList.size();
+        for (int i = 0; i < size; i++) {
+            newsBean = newBeanList.get(i);
+            if (newsBean != null && newsBean.image.id.equals(imageId)) {
+                if (status == ApiConstance.UN_FAVOURITE) {
+                    newsBean.image.isFavourite = false;
+                } else {
+                    newsBean.image.isFavourite = true;
+                }
+
             }
         }
     }

@@ -23,6 +23,7 @@ import vn.app.base.util.StringUtil;
 public class NewListViewHolder extends OnClickViewHolder {
 
     public static final int LAYOUT_ID = R.layout.item_list_news;
+    private NewsBean newsBean;
 
     // User
     @BindView(R.id.imgAvatar)
@@ -125,15 +126,6 @@ public class NewListViewHolder extends OnClickViewHolder {
                 onNewItemClick.onFollowClick(userProfile.user.id, 1);
             }
         }
-//        if (bFollow) {
-//            bFollow = false;
-//            btnFollow.setBackgroundResource(R.drawable.button_unfollow_bg);
-//            btnFollow.setText("Follow");
-//        }else {
-//            bFollow = true;
-//            btnFollow.setBackgroundResource(R.drawable.button_follow_bg);
-//            btnFollow.setText("Following");
-//        }
     }
 
     @OnClick(R.id.imgLike)
@@ -145,18 +137,11 @@ public class NewListViewHolder extends OnClickViewHolder {
                 onNewItemClick.onFavouriteClick(userProfile.image.id, 1);
             }
         }
-//        if (bLike) {
-//            bLike = false;
-//            ivLike.setImageResource(R.drawable.icon_no_favourite);
-//        }else {
-//            bLike = true;
-//            ivLike.setImageResource(R.drawable.icon_favourite);
-//        }
     }
     @OnClick(R.id.txtPinMap)
     public void clickPinMap() {
         if (onNewItemClick != null) {
-            onNewItemClick.onPinMapClick(userProfile.image.lat, userProfile.image._long);
+            onNewItemClick.onPinMapClick(newsBean);
         }
     }
 }

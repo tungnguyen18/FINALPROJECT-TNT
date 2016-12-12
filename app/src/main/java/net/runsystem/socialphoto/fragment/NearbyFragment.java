@@ -35,6 +35,7 @@ import net.runsystem.socialphoto.R;
 import java.util.List;
 
 import vn.app.base.api.volley.callback.ApiObjectCallBack;
+import vn.app.base.util.FragmentUtil;
 
 
 public class NearbyFragment extends HeaderFragment implements OnMapReadyCallback,
@@ -54,9 +55,6 @@ public class NearbyFragment extends HeaderFragment implements OnMapReadyCallback
     List<NewsBean> dataNearbyList;
     LatLng userpostion;
 
-
-//    @BindView(R.id.map)
-//    SupportMapFragment mapFragment;
 
     public static NearbyFragment newInstance() {
         NearbyFragment newFragment = new NearbyFragment();
@@ -259,7 +257,7 @@ public class NearbyFragment extends HeaderFragment implements OnMapReadyCallback
     @Override
     public void onInfoWindowClick(Marker marker) {
         Toast.makeText(getActivity(), "InforWindow Click", Toast.LENGTH_LONG).show();
-
+        FragmentUtil.pushFragmentWithAnimation(getActivity(),ImageDetailFragment.newInstance((NewsBean) marker.getTag()),null);
     }
 
     @Override

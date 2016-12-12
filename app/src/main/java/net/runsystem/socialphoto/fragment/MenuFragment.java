@@ -88,7 +88,7 @@ public class MenuFragment extends CommonFragment implements View.OnClickListener
     @OnClick(R.id.menu_4)
     public void onFavourite(){
         // chuyen sang man hinh Favourite
-        //FragmentUtil.pushFragment(getActivity(), UploadFragment.newInstance(), null, "UploadFragment");
+        FragmentUtil.pushFragment(getActivity(), FragmentFavourite.newInstance(UserManager.getCurrentUser().id), null, "FragmentFavourite");
         selectItem(2);
     }
 

@@ -72,17 +72,12 @@ public class MainActivity extends CommonActivity implements MenuFragment.Navigat
 
     @Override
     public void initView() {
-
-      //  setUpInitScreen(FollowFragment.newInstance(),null);
         currentUser = UserManager.getCurrentUser();
         if (currentUser == null) {
             setUpInitScreen(LoginFragment.newInstance(), null);
         } else {
             setUpInitScreen(HomeFragment.newInstance(), ApiConstance.TAGHOME);
         }
-
-
-
     }
 
     @Override
@@ -202,7 +197,7 @@ public class MainActivity extends CommonActivity implements MenuFragment.Navigat
                 tvTitle.setVisibility(View.VISIBLE);
                 tvTitle.setText("Detail");
                 tvDelete.setVisibility(View.VISIBLE);
-                tvDelete.setText("Delete");
+              //  tvDelete.setText("Delete");
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
         }
 

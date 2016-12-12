@@ -37,8 +37,6 @@ public class ImageDetailComentViewHolder extends OnClickViewHolder {
     }
 
     public void bind(CommentBean commentBean) {
-       // ImageLoader.loadImage(itemView.getContext(), R.drawable.loading_list_image_220, commentBean.user.avatar, ivAvatar);
-     //   StringUtil.displayText(commentBean.comment, tvComment);
         if (commentBean.user == null) {
             ivAvatar.setImageResource(R.drawable.dummy_avatar);
         } else {

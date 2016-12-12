@@ -12,6 +12,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import net.runsystem.socialphoto.API.Request.CommentListRequest;
 import net.runsystem.socialphoto.API.Request.CommentRequest;
+import net.runsystem.socialphoto.API.Request.FavouritesRequest;
 import net.runsystem.socialphoto.API.Request.FollowHomeRequest;
 import net.runsystem.socialphoto.API.Response.CommentListResponse;
 import net.runsystem.socialphoto.Adapter.ImageDetailListAdapter;
@@ -42,6 +43,7 @@ public class ImageDetailFragment extends  BaseHeaderListFragment{
 
     public static final String IMAGE = "image";
     FollowHomeRequest followRequest;
+    FavouritesRequest favouritesRequest;
 
     ImageDetailListAdapter imageDetailListAdapter;
     LatLng pictureLocation;
@@ -76,6 +78,7 @@ public class ImageDetailFragment extends  BaseHeaderListFragment{
             });
             commentRequest.execute();
         }
+        edtSendCm.setText("");
 
     }
 
@@ -138,7 +141,7 @@ public class ImageDetailFragment extends  BaseHeaderListFragment{
             public void onFollowDetailClick(NewsBean newsBean) {
                 if (newsBean.user.isFollowing) {
                     //Goi unfollow
-                    followRequest = new FollowHomeRequest(newsBean.user.id, 1);
+                    followRequest = new FollowHomeRequest(newsBean.user.id, 0);
                     followRequest.setRequestCallBack(new ApiObjectCallBack<BaseResponse>() {
                         @Override
                         public void onSuccess(BaseResponse data) {
@@ -173,51 +176,47 @@ public class ImageDetailFragment extends  BaseHeaderListFragment{
                 followRequest.execute();
             }
 
+
             @Override
             public void onFavouriteDetailClick(NewsBean newsBean) {
+                if (newsBean.image.isFavourite) {
+                    //Goi unfavorite
+                    favouritesRequest = new FavouritesRequest(newsBean.image.id, 0);
+                    favouritesRequest.setRequestCallBack(new ApiObjectCallBack<BaseResponse>() {
+                        @Override
+                        public void onSuccess(BaseResponse data) {
+                            if (data.status == 1) {
+                                selectHomeBean.image.isFavourite = false;
+                                imageDetailListAdapter.notifyDataSetChanged();
+                            }
+                        }
 
+                        @Override
+                        public void onFail(int failCode, String message) {
+
+                        }
+                    });
+
+                } else {
+                    //Goi favourite
+                    favouritesRequest = new FavouritesRequest(newsBean.image.id, 1);
+                    favouritesRequest.setRequestCallBack(new ApiObjectCallBack<BaseResponse>() {
+                        @Override
+                        public void onSuccess(BaseResponse data) {
+                            if (data.status == 1) {
+                                selectHomeBean.image.isFavourite = true;
+                                imageDetailListAdapter.notifyDataSetChanged();
+                            }
+                        }
+
+                        @Override
+                        public void onFail(int failCode, String message) {
+
+                        }
+                    });
+                }
+                favouritesRequest.execute();
             }
-
-//            @Override
-//            public void onFavouriteDetailClick(NewsBean newsBean) {
-//                if (newsBean.image.isFavourite) {
-//                    //Goi unfavorite
-//                    favouritesRequest = new FavouritesRequest(newsBean.image.id, 0);
-//                    favouritesRequest.setRequestCallBack(new ApiObjectCallBack<BaseResponse>() {
-//                        @Override
-//                        public void onSuccess(BaseResponse data) {
-//                            if (data.status == 1) {
-//                                selectHomeBean.image.isFavourite = false;
-//                                imageDetailListAdapter.notifyDataSetChanged();
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onFail(int failCode, String message) {
-//
-//                        }
-//                    });
-//
-//                } else {
-//                    //Goi favourite
-//                    favouritesRequest = new FavouritesRequest(homeBean.image.id, 1);
-//                    favouritesRequest.setRequestCallBack(new ApiObjectCallBack<BaseResponse>() {
-//                        @Override
-//                        public void onSuccess(BaseResponse data) {
-//                            if (data.status == 1) {
-//                                selectHomeBean.image.isFavourite = true;
-//                                imageDetailListAdapter.notifyDataSetChanged();
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onFail(int failCode, String message) {
-//
-//                        }
-//                    });
-//                }
-//                favouritesRequest.execute();
-//            }
 
             @Override
             public void onMapClick(NewsBean newsBean) {
@@ -279,13 +278,4 @@ public class ImageDetailFragment extends  BaseHeaderListFragment{
 
     }
 
-//    private void setImageDetailData(List<CommentBean> imgDetailDataList) {
-//        if (imgDetailDataList != null) {
-//            commentList = imgDetailDataList;
-//            imageDetailListAdapter = new ImageDetailListAdapter();
-//            imageDetailListAdapter.setHeader(newsBeanHeader);
-//            imageDetailListAdapter.setItems(imgDetailDataList);
-//            rvList.setAdapter(imageDetailListAdapter);
-//        }
-//    }
 }
