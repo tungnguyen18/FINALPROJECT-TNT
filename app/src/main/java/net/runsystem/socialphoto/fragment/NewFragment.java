@@ -27,7 +27,7 @@ import vn.app.base.customview.endlessrecycler.EndlessRecyclerOnScrollListener;
 import vn.app.base.util.DebugLog;
 import vn.app.base.util.FragmentUtil;
 
-public class NewFragment extends HeaderFragment implements SwipeRefreshLayout.OnRefreshListener,OnNewItemClick {
+public class NewFragment extends BaseHeaderListFragment implements OnNewItemClick {
 
     public static final String HOME_TYPE = "HOME_TYPE";
 
@@ -61,6 +61,11 @@ public class NewFragment extends HeaderFragment implements SwipeRefreshLayout.On
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_new;
+    }
+
+    @Override
+    protected void onRefreshData() {
+        getNews(true);
     }
 
     @Override
@@ -144,7 +149,6 @@ public class NewFragment extends HeaderFragment implements SwipeRefreshLayout.On
 
     @Override
     public void onRefresh() {
-    getNews(true);
     }
 
     @Override

@@ -95,19 +95,10 @@ public class ImageDetailFragment extends  BaseHeaderListFragment{
         return imageDetailFragment;
     }
 
-
     @Override
     protected int getLeftIcon() {
         return HeaderOption.LEFT_BACK;
     }
-//    @Override
-//    protected int getRightIcon() {
-//        if (selectHomeBean.user.username.equals(UserManager.getCurrentUser().username)) {
-//            return HeaderOption.RIGHT_DELETE;
-//        } else return HeaderOption.RIGHT_NO_OPTION;
-//
-//    }
-
 
     @Override
     public String getScreenTitle() {

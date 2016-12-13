@@ -30,8 +30,6 @@ public class FollowFragment extends BaseHeaderListFragment implements OnRecycler
         return newFragment;
     }
 
-
-
     @Override
     protected void onRefreshData() {
 

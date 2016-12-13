@@ -50,4 +50,5 @@ public class NewListAdapter extends AdapterWithItemClick<NewListViewHolder> {
         super.onBindViewHolder(holder, position);
         holder.bind(newBeanList.get(position), onNewItemClick);
     }
+
 }
