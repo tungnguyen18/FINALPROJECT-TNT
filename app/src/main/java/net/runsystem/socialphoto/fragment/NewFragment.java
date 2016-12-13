@@ -68,6 +68,7 @@ public class NewFragment extends HeaderFragment implements SwipeRefreshLayout.On
         home_type = bundle.getInt(HOME_TYPE);
     }
 
+
     @Override
     protected void initView(View root) {
         super.initView(root);
@@ -143,8 +144,7 @@ public class NewFragment extends HeaderFragment implements SwipeRefreshLayout.On
 
     @Override
     public void onRefresh() {
-
-
+    getNews(true);
     }
 
     @Override

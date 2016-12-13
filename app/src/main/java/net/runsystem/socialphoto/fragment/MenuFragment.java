@@ -16,15 +16,24 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import net.runsystem.socialphoto.R;
 import net.runsystem.socialphoto.manager.UserManager;
 
+import butterknife.BindView;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 import vn.app.base.fragment.CommonFragment;
+import vn.app.base.imageloader.ImageLoader;
 import vn.app.base.util.FragmentUtil;
 
 public class MenuFragment extends CommonFragment implements View.OnClickListener  {
+    @BindView(R.id.tvUser_Menu)
+    TextView tvUserName_Nav;
+
+    @BindView(R.id.menu_avatar)
+    CircleImageView menu_Avatar;
 
     private NavigationDrawerCallbacks mCallbacks;
 
@@ -179,11 +188,15 @@ public class MenuFragment extends CommonFragment implements View.OnClickListener
     }
 
     public void setUp(final int fragmentId, DrawerLayout drawerLayout) {
+        if (UserManager.getCurrentUser() != null) {
+            tvUserName_Nav.setText(UserManager.getCurrentUser().username);
+            ImageLoader.loadImage(getActivity(), UserManager.getCurrentUser().avatar, menu_Avatar);
+        }
 
         mFragmentContainerView = getActivity().findViewById(fragmentId);
         mDrawerLayout = drawerLayout;
         contentView = getActivity().findViewById(R.id.container);
-        mDrawerLayout.setScrimColor(Color.GRAY);
+        mDrawerLayout.setScrimColor(Color.TRANSPARENT);
 
         ImageView imageDrawer = (ImageView) getActivity().findViewById(R.id.headerMenu);
         imageDrawer.setOnClickListener(new View.OnClickListener() {

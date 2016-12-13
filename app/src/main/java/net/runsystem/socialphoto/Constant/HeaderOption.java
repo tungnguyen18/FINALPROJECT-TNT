@@ -19,6 +19,8 @@ public class HeaderOption {
     public static final int RIGHT_UPDATE = 79;
 
     public static final int MENU_HOME = 80;
+    public static final int MENU_DELETE = 70;
+    public static final int MENU_NODELETE = 71;
     public static final int MENU_PROFILE = 81;
     public static final int MENU_PROFILE_USER = 82;
     public static final int MENU_FAVOURITE = 83;

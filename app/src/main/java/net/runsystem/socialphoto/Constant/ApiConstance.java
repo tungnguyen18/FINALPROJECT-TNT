@@ -52,6 +52,7 @@ public class ApiConstance {
     //Detail
     public static final String URLCOMMENTLIST = "https://polar-plains-86888.herokuapp.com/api/commentlist";
     public static final String URLCOMMENT = "https://polar-plains-86888.herokuapp.com/api/comment";
+    public static final String URLDELETE = "https://polar-plains-86888.herokuapp.com/api/image/delete";
     public static final String IMAGEID = "imageId";
     public static final String COMMENT = "comment";
     public static final String USERID = "userId";

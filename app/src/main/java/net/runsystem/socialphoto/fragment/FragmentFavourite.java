@@ -74,7 +74,7 @@ public class FragmentFavourite extends BaseHeaderListFragment {
     }
     @Override
     protected void onRefreshData() {
-
+        getFavouriteList(true);
     }
 
     @Override

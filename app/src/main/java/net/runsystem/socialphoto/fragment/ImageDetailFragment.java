@@ -1,6 +1,7 @@
 package net.runsystem.socialphoto.fragment;
 
 
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +13,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import net.runsystem.socialphoto.API.Request.CommentListRequest;
 import net.runsystem.socialphoto.API.Request.CommentRequest;
+import net.runsystem.socialphoto.API.Request.DeleteRequest;
 import net.runsystem.socialphoto.API.Request.FavouritesRequest;
 import net.runsystem.socialphoto.API.Request.FollowHomeRequest;
 import net.runsystem.socialphoto.API.Response.CommentListResponse;
@@ -19,6 +21,7 @@ import net.runsystem.socialphoto.Adapter.ImageDetailListAdapter;
 import net.runsystem.socialphoto.Bean.CommentBean;
 import net.runsystem.socialphoto.Bean.DataLoginBean;
 import net.runsystem.socialphoto.Bean.NewsBean;
+import net.runsystem.socialphoto.Constant.ApiConstance;
 import net.runsystem.socialphoto.Constant.HeaderOption;
 import net.runsystem.socialphoto.MainActivity;
 import net.runsystem.socialphoto.R;
@@ -36,6 +39,8 @@ import vn.app.base.adapter.DividerItemDecoration;
 import vn.app.base.api.response.BaseResponse;
 import vn.app.base.api.volley.callback.ApiObjectCallBack;
 import vn.app.base.util.DebugLog;
+import vn.app.base.util.DialogUtil;
+import vn.app.base.util.FragmentUtil;
 import vn.app.base.util.IntentUtil;
 
 
@@ -95,13 +100,14 @@ public class ImageDetailFragment extends  BaseHeaderListFragment{
     protected int getLeftIcon() {
         return HeaderOption.LEFT_BACK;
     }
-    @Override
-    protected int getRightIcon() {
-        if (selectHomeBean.user.username.equals(UserManager.getCurrentUser().username)) {
-            return HeaderOption.RIGHT_DELETE;
-        } else return HeaderOption.RIGHT_NO_OPTION;
+//    @Override
+//    protected int getRightIcon() {
+//        if (selectHomeBean.user.username.equals(UserManager.getCurrentUser().username)) {
+//            return HeaderOption.RIGHT_DELETE;
+//        } else return HeaderOption.RIGHT_NO_OPTION;
+//
+//    }
 
-    }
 
     @Override
     public String getScreenTitle() {
@@ -259,7 +265,11 @@ public class ImageDetailFragment extends  BaseHeaderListFragment{
         rvList.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvList.addItemDecoration(new DividerItemDecoration(getActivity(), null));
         setCanRefresh(false);
-        ((MainActivity)getActivity()).setToolbar(HeaderOption.MENU_DETAIL_USER);
+        if (selectHomeBean.user.username.equals(UserManager.getCurrentUser().username)) {
+            ((MainActivity)getActivity()).setToolbar(HeaderOption.MENU_DELETE);
+                }else {
+            ((MainActivity)getActivity()).setToolbar(HeaderOption.MENU_DETAIL_USER);
+        }
     }
 
     @Override
@@ -275,6 +285,33 @@ public class ImageDetailFragment extends  BaseHeaderListFragment{
     protected void initData() {
         commentList = new ArrayList<>();
         getCommentList();
+
+    }
+    @Override
+    public void onFragmentUIHandle(Bundle bundle) {
+        super.onFragmentUIHandle(bundle);
+        if (bundle.getBoolean(ApiConstance.ISDELCLICK) == true) {
+            DialogUtil.showTwoBtnCancelableDialog(getActivity(), "DETELE THIS PHOTO ?", "Are you sure?", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    DeleteRequest deleteRequest = new DeleteRequest(selectHomeBean.image.id);
+                    deleteRequest.setRequestCallBack(new ApiObjectCallBack<BaseResponse>() {
+                        @Override
+                        public void onSuccess(BaseResponse data) {
+                            if (data.status == 1) {
+                                FragmentUtil.pushFragmentWithAnimation(getActivity(), HomeFragment.newInstance(), null);
+                            }
+                        }
+
+                        @Override
+                        public void onFail(int failCode, String message) {
+
+                        }
+                    });
+                    deleteRequest.execute();
+                }
+            });
+        }
 
     }
 

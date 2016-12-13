@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import net.runsystem.socialphoto.Bean.HeaderControlBean;
+import net.runsystem.socialphoto.Bean.NewsBean;
 import net.runsystem.socialphoto.Bean.User;
 import net.runsystem.socialphoto.Constant.ApiConstance;
 import net.runsystem.socialphoto.Constant.HeaderOption;
@@ -49,6 +50,7 @@ public class MainActivity extends CommonActivity implements MenuFragment.Navigat
     User currentUser;
 
     int iScreenNo = 0;
+    NewsBean selectHomeBean;
 
     @Override
     protected String getNoConnectionMessage() {
@@ -175,6 +177,14 @@ public class MainActivity extends CommonActivity implements MenuFragment.Navigat
         menuFragment = (MenuFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         menuFragment.setUp(R.id.navigation_drawer, drawerLayout);
     }
+    @OnClick(R.id.tv_delete)
+    public void onDelete() {
+        if (fragmentListener != null) {
+            Bundle bundle = new Bundle();
+            bundle.putBoolean(ApiConstance.ISDELCLICK, true);
+            fragmentListener.onFragmentUIHandle(bundle);
+        }
+    }
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
@@ -196,9 +206,16 @@ public class MainActivity extends CommonActivity implements MenuFragment.Navigat
                 ivBack.setVisibility(View.VISIBLE);
                 tvTitle.setVisibility(View.VISIBLE);
                 tvTitle.setText("Detail");
-                tvDelete.setVisibility(View.VISIBLE);
-              //  tvDelete.setText("Delete");
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+                break;
+            case HeaderOption.MENU_DELETE:
+                rlToolbar.setVisibility(View.VISIBLE);
+                ivBack.setVisibility(View.VISIBLE);
+                tvTitle.setVisibility(View.VISIBLE);
+                tvTitle.setText("Detail");
+                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+                tvDelete.setVisibility(View.VISIBLE);
+                tvTitle.setText("Delete");
         }
 
 
