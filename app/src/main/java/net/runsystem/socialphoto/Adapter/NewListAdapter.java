@@ -22,10 +22,6 @@ public class NewListAdapter extends AdapterWithItemClick<NewListViewHolder> {
 
     OnNewItemClick onNewItemClick;
 
-
-
-
-
     public void setOnNewItemClick(OnNewItemClick onNewItemClick) {
         this.onNewItemClick = onNewItemClick;
     }

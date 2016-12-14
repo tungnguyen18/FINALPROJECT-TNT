@@ -149,6 +149,7 @@ public class NewFragment extends BaseHeaderListFragment implements OnNewItemClic
 
     @Override
     public void onRefresh() {
+        getNews(true);
     }
 
     @Override
