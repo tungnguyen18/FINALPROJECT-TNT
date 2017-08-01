@@ -66,6 +66,7 @@ public class NewFragment extends BaseHeaderListFragment implements OnNewItemClic
     @Override
     protected void onRefreshData() {
         getNews(true);
+        hideCoverNetworkLoading();
     }
 
     @Override
@@ -104,7 +105,7 @@ public class NewFragment extends BaseHeaderListFragment implements OnNewItemClic
     }
 
     private void getNews(final boolean isRefresh) {
-
+        showCoverNetworkLoading();
         NewsRequest newsRequest;
         if (!isRefresh) {
             newsRequest = new NewsRequest(home_type, "", 0);
@@ -126,6 +127,8 @@ public class NewFragment extends BaseHeaderListFragment implements OnNewItemClic
         });
         newsRequest.execute();
     }
+
+
 
     private void handleNewsData(List<NewsBean> inNewsBean) {
         this.newBeanList = inNewsBean;
@@ -191,7 +194,6 @@ public class NewFragment extends BaseHeaderListFragment implements OnNewItemClic
                     newListAdapter.notifyDataSetChanged();
                 }
             }
-
             @Override
             public void onFail(int failCode, String message) {
                 initialNetworkError();

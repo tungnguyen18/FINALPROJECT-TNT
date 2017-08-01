@@ -215,7 +215,7 @@ public class MainActivity extends CommonActivity implements MenuFragment.Navigat
                 tvTitle.setText("Detail");
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
                 tvDelete.setVisibility(View.VISIBLE);
-                tvTitle.setText("Delete");
+                tvDelete.setText("Delete");
         }
 
 
@@ -233,8 +233,5 @@ public class MainActivity extends CommonActivity implements MenuFragment.Navigat
             drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         }
     }
-    @OnClick(R.id.headerBack)
-    public void clickHeaderBack(){
-        FragmentUtil.popBackStack(this);
-    }
+
 }

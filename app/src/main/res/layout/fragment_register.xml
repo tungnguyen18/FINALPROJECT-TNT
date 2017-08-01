@@ -31,9 +31,10 @@
             android:text="Username"
             android:textSize="20dp"
             android:textColor="@color/colorWhite"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="75dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:layout_marginTop="15dp"
+            android:textAlignment="center"
             android:background="@color/bg_violet_transparent"/>
 
         <EditText
@@ -41,7 +42,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/etUser"
             android:textColor="@color/colorWhite"
-            android:lines="1"
+            android:singleLine="true"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:layout_marginTop="2dp"/>
@@ -62,9 +63,10 @@
             android:text="Email"
             android:textSize="20dp"
             android:textColor="@color/white"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="75dp"
-            android:background="@color/bg_violet_transparent"/>
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@color/bg_violet_transparent"
+            android:textAlignment="center" />
 
         <EditText
             android:layout_width="match_parent"
@@ -72,7 +74,7 @@
             android:id="@+id/etEmail"
             android:backgroundTint="@color/colorWhite"
             android:textColor="@color/colorWhite"
-            android:lines="1"
+            android:singleLine="true"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:layout_marginTop="2dp"/>
@@ -92,8 +94,9 @@
             android:text="Password"
             android:textSize="20dp"
             android:textColor="@color/white"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="75dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:textAlignment="center"
             android:background="@color/bg_violet_transparent"/>
 
         <EditText
@@ -105,7 +108,8 @@
             android:lines="1"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:layout_marginTop="2dp"/>
+            android:layout_marginTop="2dp"
+            android:inputType="textPassword"/>
     </LinearLayout>
 
     <LinearLayout
@@ -122,8 +126,9 @@
             android:text="Confirm Password"
             android:textSize="20dp"
             android:textColor="@color/white"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="75dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:textAlignment="center"
             android:background="@color/bg_violet_transparent"/>
 
         <EditText
@@ -135,7 +140,8 @@
             android:lines="1"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:layout_marginTop="2dp"/>
+            android:layout_marginTop="2dp"
+            android:inputType="textPassword"/>
     </LinearLayout>
 
     <Button

@@ -7,6 +7,8 @@ package net.runsystem.socialphoto.Constant;
 public class ApiConstance {
     public static final String API_URL = "https://polar-plains-86888.herokuapp.com/api/";
     public static final String IMAGE_UPLOAD = API_URL + "image/upload";
+    public static final String REGISTER = API_URL + "regist";
+
 
     public static final int REQUEST_CODE_TAKEPHOTO = 100;
     public static final int CAMERA_REQQUEST_CROP = 927;

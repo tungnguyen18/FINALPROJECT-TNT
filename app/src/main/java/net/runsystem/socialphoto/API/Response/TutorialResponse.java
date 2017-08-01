@@ -6,9 +6,7 @@ import net.runsystem.socialphoto.Bean.DataTut;
 
 import vn.app.base.api.response.BaseResponse;
 
-/**
- * Created by Veteran Commander on 10/21/2016.
- */
+
 
 public class TutorialResponse extends BaseResponse {
 

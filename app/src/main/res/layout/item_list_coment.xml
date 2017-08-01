@@ -4,21 +4,22 @@
     android:layout_marginTop="10dp"
     android:layout_marginLeft="10dp"
     android:orientation="vertical"
-    android:background="@color/purple_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgUser"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:scaleType="centerCrop"
         android:src="@drawable/dummy_avatar" />
 
     <TextView
         android:text="TextView"
-        android:layout_width="180dp"
-        android:textColor="@color/black"
-        android:background="@color/white"
+        android:layout_width="wrap_content"
+        android:textColor="@color/white"
+        android:background="@color/ocean_blue"
         android:inputType="textMultiLine"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/imgUser"
@@ -27,6 +28,7 @@
         android:layout_marginBottom="16dp"
         android:id="@+id/txtCmt"
         android:layout_toRightOf="@+id/imgUser"
-        android:layout_marginLeft="29dp" />
+        android:layout_marginLeft="29dp"
+        android:textStyle="normal|italic" />
 
 </RelativeLayout>

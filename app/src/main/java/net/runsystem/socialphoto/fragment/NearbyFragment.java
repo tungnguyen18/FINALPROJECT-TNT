@@ -54,6 +54,7 @@ public class NearbyFragment extends HeaderFragment implements OnMapReadyCallback
     CustomInfoWindow newInfo;
     List<NewsBean> dataNearbyList;
     LatLng userpostion;
+    NewsBean newsBean;
 
 
     public static NearbyFragment newInstance() {
@@ -128,6 +129,7 @@ public class NearbyFragment extends HeaderFragment implements OnMapReadyCallback
             return;
         }
         mMap.setMyLocationEnabled(true);
+        mMap.setOnInfoWindowClickListener(this);
     }
 
 
@@ -256,8 +258,8 @@ public class NearbyFragment extends HeaderFragment implements OnMapReadyCallback
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        Toast.makeText(getActivity(), "InforWindow Click", Toast.LENGTH_LONG).show();
         FragmentUtil.pushFragmentWithAnimation(getActivity(),ImageDetailFragment.newInstance((NewsBean) marker.getTag()),null);
+      //  FragmentUtil.pushFragment(getActivity(), ImageDetailFragment.newInstance(newsBean) marker.getTag(), null);
     }
 
     @Override

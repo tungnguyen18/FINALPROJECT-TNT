@@ -54,6 +54,7 @@ public class MenuFragment extends CommonFragment implements View.OnClickListener
     private int currentmenupos = 0;
     private float lastTranslate = 0.0f;
 
+
     public MenuFragment() {
     }
 

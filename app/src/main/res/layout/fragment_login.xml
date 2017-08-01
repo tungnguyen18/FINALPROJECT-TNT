@@ -51,6 +51,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/background_edittext_login"
             android:paddingLeft="35dp"
+            android:singleLine="true"
             android:textColor="@android:color/white" />
     </RelativeLayout>
 
